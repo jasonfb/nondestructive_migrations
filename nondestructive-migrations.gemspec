@@ -12,6 +12,5 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
   
   s.add_runtime_dependency 'activerecord', '~> 3.1', '> 3.1'
-  s.add_dependency "rake"
   s.add_development_dependency 'rails/generators/active_record', '~> 3.1', '> 3.1'
 end
