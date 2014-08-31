@@ -39,7 +39,7 @@ You are now set up and ready to start making data migrations. To create your fir
 rails generate data_migration UpdatePhoneNumbers
 ```
 
-Look for a file called (something like) 20140831020834_update_phone_numbers.rb. Add whatever operations you want to do in your up method, like large data manipulation jobs, running rake tasks, or enqueuing batch process jobs. 
+Look for a file called (something like) `db/data_migrate/20140831020834_update_phone_numbers.rb`. Add whatever operations you want to do in your up method, like large data manipulation jobs, running rake tasks, or enqueuing batch process jobs. 
 
 You probably want to put this into the down side of your data migration:
 
