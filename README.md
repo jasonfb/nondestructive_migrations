@@ -46,7 +46,7 @@ You probably want to put `ActiveRecord::IrreversibleMigration` into the **down**
 ```
 class UpdatePhoneNumbers < ActiveRecord::Migration
   def up
-    // do stuff here
+    # do stuff here
   end
 
   def down
