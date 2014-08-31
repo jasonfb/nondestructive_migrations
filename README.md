@@ -76,3 +76,23 @@ Migrate up the specified versions.
 ## rake data:rollback
 Rollback the last version. Generally data migrations don't have any "down" associated with them so use this only under extreme circumstances. 
 
+
+# Two Kind of Deployment
+You can read more about doing the preboot feature on Heroku labs at https://devcenter.heroku.com/articles/labs-preboot. (Preboot is an "experimental" feature on Heroku.)
+
+## Schema-Change Deploys
+
+1. Compile the assets
+2. Enable maintenance-mode
+3. Launch the new app
+4. Run schema migrations
+5. Reboot the app (force Rails to pick up new schema changes)
+6. Disable maintenance mode
+
+
+## Zero-Downtime deploys (no schema migrations)
+
+1. Compile the assets
+2. Pre-boot the new app
+3. Heroku switches the incoming requests to use the new app
+4. Run data migrations (while new app is up & running)
