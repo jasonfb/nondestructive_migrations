@@ -77,7 +77,7 @@ Migrate up the specified versions.
 Rollback the last version. Generally data migrations don't have any "down" associated with them so use this only under extreme circumstances. 
 
 
-# Two Kind of Deployment
+# Two Kinds of Deployment
 You can read more about doing the preboot feature on Heroku labs at https://devcenter.heroku.com/articles/labs-preboot. (Preboot is an "experimental" feature on Heroku.)
 
 ## Schema-Change Deploys
