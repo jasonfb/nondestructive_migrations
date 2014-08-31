@@ -27,7 +27,7 @@ After running `bundle install`, run the setup script:
 rails generate data_migrations:install
 ```
 
-This will create a *schema* migration that will create the data_migrations table. Now execute that schema migration:
+This will create a *schema* migration that will create the data_migrations table itself. Now execute that schema migration:
 
 ```
 rake db:migrate
@@ -39,11 +39,25 @@ You are now set up and ready to start making data migrations. To create your fir
 rails generate data_migration UpdatePhoneNumbers
 ```
 
+Look for a file called (something like) 20140831020834_update_phone_numbers.rb. Add whatever operations you want to do in your up method, like large data manipulation jobs, running rake tasks, or enqueuing batch process jobs. 
+
+You probably want to put this into the down side of your data migration:
+
+```
+ActiveRecord::IrreversibleMigration
+```
+
+To actually tell your app to run the data migration, use:
+
+```
+rake data:migrate
+```
 
 
+You get three additional rake tasks that operate and have the same syntax as the schema migrations, but operate only on the data migrations. 
 
 ## rake data:migrate
-Migrate all unmigrated versions.
+Migrate all data migrations that haven't been migrated.
 
 ## rake data:migrate:down VERSION=xxxxxxxxxxx
 Migrate down the specified version
@@ -52,5 +66,5 @@ Migrate down the specified version
 Migrate up the specified versions.
 
 ## rake data:rollback
-Rollback the last version
+Rollback the last version. Generally data migrations don't have any "down" associated with them so use this only under extreme circumstances. 
 
