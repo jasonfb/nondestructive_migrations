@@ -39,12 +39,20 @@ You are now set up and ready to start making data migrations. To create your fir
 rails generate data_migration UpdatePhoneNumbers
 ```
 
-Look for a file called (something like) `db/data_migrate/20140831020834_update_phone_numbers.rb`. Add whatever operations you want to do in your up method, like large data manipulation jobs, running rake tasks, or enqueuing batch process jobs. 
+Look for a file called (something like) `db/data_migrate/20140831020834_update_phone_numbers.rb`. It will have been automatically written with an empty up and down method. Add whatever operations you want to do in your **up** method, like large data manipulation jobs, running rake tasks, or enqueuing batch process jobs. 
 
-You probably want to put this into the down side of your data migration:
+You probably want to put `ActiveRecord::IrreversibleMigration` into the **down** method your data migration:
 
 ```
-ActiveRecord::IrreversibleMigration
+class UpdatePhoneNumbers < ActiveRecord::Migration
+  def up
+    // do stuff here
+  end
+
+  def down
+    ActiveRecord::IrreversibleMigration
+  end
+end
 ```
 
 To actually tell your app to run the data migration, use:
