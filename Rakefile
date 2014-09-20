@@ -2,11 +2,6 @@
 require 'rubygems'
 require 'bundler/setup'
 
-
-# if !ENV["APPRAISAL_INITIALIZED"] && !ENV["TRAVIS"]
-#   task :default => :appraisal
-# end
-
 desc 'Default: run specs'
 task default: :spec
 

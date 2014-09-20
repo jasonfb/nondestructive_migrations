@@ -10,6 +10,8 @@ require 'logger'
 require 'rails'
 require 'active_record'
 require 'lib/nondestructive_migrator.rb'
+
+
 # require File.expand_path('../lib/nondestructive_migrator.rb', __FILE__)
 # I18n.enforce_available_locales = true
 
