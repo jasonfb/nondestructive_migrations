@@ -7,9 +7,9 @@ rvm:
   - ruby-head
 
 env:
-#  - DB=sqlite3
+  - DB=sqlite3
   - DB=mysql
-#  - DB=postgresql
+  - DB=postgresql
 
 gemfile:
   - gemfiles/rails_3.gemfile
