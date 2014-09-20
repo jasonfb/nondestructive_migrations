@@ -13,31 +13,23 @@ env:
 
 gemfile:
   - gemfiles/rails_3.gemfile
-  - gemfiles/rails_4.gemfile
+  - gemfiles/rails_4-0.gemfile
 
 cache: bundler
 script: bundle exec rake spec
 before_install: gem install bundler
 bundler_args: '--without local_development'
 
-#matrix:
-#  fast_finish: true
-#  allow_failures:
-#      - gemfile: gemfiles/activerecord_edge.gemfile
-#      - rvm: rbx-2
-#      - rvm: ruby-head
-#  exclude:
-#      - rvm: 1.9.3
-#        gemfile: gemfiles/activerecord_4.0.gemfile
-#      - rvm: 1.9.3
-#        gemfile: gemfiles/activerecord_4.1.gemfile
-#      - rvm: 1.9.3
-#        gemfile: gemfiles/activerecord_edge.gemfile
-#      - rvm: rbx-2
-#        gemfile: gemfiles/activerecord_3.2.gemfile
-#      - rvm: ruby-head
-#        gemfile: gemfiles/activerecord_3.2.gemfile
-#      - rvm: ruby-head
-#        gemfile: gemfiles/activerecord_4.0.gemfile
-#      - rvm: ruby-head
-#        gemfile: gemfiles/activerecord_4.1.gemfile
+matrix:
+  fast_finish: true
+  allow_failures:
+      - gemfile: gemfiles/activerecord_edge.gemfile
+      - rvm: rbx-2
+      - rvm: ruby-head
+  exclude:
+      - rvm: 1.9.3
+        gemfile: gemfiles/rails_4-0.gemfile
+      - rvm: 1.9.3
+        gemfile: gemfiles/rails_4-1.gemfile
+      - rvm: ruby-head
+        gemfile: gemfiles/rails-3.gemfile
