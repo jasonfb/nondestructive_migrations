@@ -3,13 +3,10 @@
 source "https://rubygems.org"
 
 gem "appraisal"
+gem "guard"
+gem "guard-rspec"
+gem "rake"
+gem "byebug", :platform => :mri_21
 gem "rails", "4.1.6"
-
-group :local_development do
-  gem "guard"
-  gem "guard-rspec"
-  gem "rake"
-  gem "byebug", :platform => :mri_21
-end
 
 gemspec :path => "../"

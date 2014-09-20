@@ -3,11 +3,10 @@
 source "https://rubygems.org"
 
 gem "appraisal"
-gem "rails", "3.2.19"
-
 gem "guard"
 gem "guard-rspec"
 gem "rake"
 gem "byebug", :platform => :mri_21
+gem "rails", "3.2.19"
 
 gemspec :path => "../"
