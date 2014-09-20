@@ -7,16 +7,16 @@ rvm:
   - ruby-head
 
 env:
-  - DB=sqlite3
+#  - DB=sqlite3
   - DB=mysql
-  - DB=postgresql
+#  - DB=postgresql
 
 gemfile:
   - gemfiles/rails_3.gemfile
   - gemfiles/rails_4-0.gemfile
-  - gemfiles/rails_4-1.gemfile
+#  - gemfiles/rails_4-1.gemfile
 
-cache: bundler
+#cache: bundler
 script: bundle exec rake
 before_install: gem install bundler
 
@@ -24,9 +24,9 @@ matrix:
   fast_finish: true
 
   exclude:
-      - rvm: 1.9.3
-        gemfile: gemfiles/rails_4-0.gemfile
-      - rvm: 1.9.3
-        gemfile: gemfiles/rails_4-1.gemfile
-      - rvm: ruby-head
-        gemfile: gemfiles/rails-3.gemfile
+    - rvm: 1.9.3
+      gemfile: gemfiles/rails_4-0.gemfile
+    - rvm: 1.9.3
+      gemfile: gemfiles/rails_4-1.gemfile
+    - rvm: ruby-head
+      gemfile: gemfiles/rails-3.gemfile
