@@ -2,21 +2,18 @@ language: ruby
 
 rvm:
   - 1.9.3
-  - 2.0.0
-  - 2.1.1
-  - ruby-head
+#  - 2.0.0
+#  - 2.1.1
+#  - ruby-head
 
 env:
-  - DB=sqlite3
+#  - DB=sqlite3
   - DB=mysql
-  - DB=postgresql
+#  - DB=postgresql
 
 gemfile:
   - gemfiles/rails_3.gemfile
   - gemfiles/rails_4.gemfile
-#  - gemfiles/activerecord_4.0.gemfile
-#  - gemfiles/activerecord_4.1.gemfile
-#  - gemfiles/activerecord_edge.gemfile
 
 cache: bundler
 script: bundle exec rake spec
