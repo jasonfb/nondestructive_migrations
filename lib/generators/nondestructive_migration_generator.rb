@@ -8,7 +8,7 @@ module DataMigrations
     include Rails::Generators::Migration
     source_root File.expand_path("../templates", __FILE__)
 
-    desc "Creates a Devise initializer and copy locale files to your application."
+    desc "Creates an initializer and copy files to your application."
     class_option :orm
     def self.next_migration_number(path)
       Time.now.utc.strftime("%Y%m%d%H%M%S")

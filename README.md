@@ -54,7 +54,7 @@ class UpdatePhoneNumbers < ActiveRecord::Migration
   end
 
   def down
-    ActiveRecord::IrreversibleMigration
+    raise ActiveRecord::IrreversibleMigration
   end
 end
 ```
