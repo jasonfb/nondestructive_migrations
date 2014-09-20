@@ -17,8 +17,9 @@ gemfile:
 #  - gemfiles/rails_4-1.gemfile
 
 #cache: bundler
-script: bundle exec rake
 before_install: gem install bundler
+install: bundle install
+script: bundle exec rake
 
 matrix:
   fast_finish: true
