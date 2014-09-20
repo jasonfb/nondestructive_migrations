@@ -16,7 +16,7 @@ gemfile:
   - gemfiles/rails_4-0.gemfile
 
 cache: bundler
-script: bundle exec rake spec
+script: bundle exec rake
 before_install: gem install bundler
 bundler_args: '--without local_development'
 
