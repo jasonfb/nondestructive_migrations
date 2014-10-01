@@ -32,17 +32,19 @@ You can check out CodeClimate & Travis reports on this Gem here:
 
 
 ## Installation
+To add to your Rails project, follow these steps.
 
-Add this to your gemfile.
+1) Add this to your gemfile.
 ```ruby
 gem 'nondestructive_migrations'
 ```
 
-After running `bundle install`, run the setup script:
+2) Run `bundle install
+
+3) Run the setup script:
 ```
 rails generate data_migrations:install
 ```
-
 This will create a *schema* migration that will create the data_migrations table itself. Now execute that schema migration:
 
 ```
