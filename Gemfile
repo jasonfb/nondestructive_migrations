@@ -12,5 +12,5 @@ gem 'byebug' , platform: :mri_21
 
 group :test do
   gem 'simplecov', :require => false
-  gem "generator_spec", git: 'git@github.com:jasonfb/generator_spec.git'
+  gem "generator_spec", git: 'https://github.com/jasonfb/generator_spec'
 end

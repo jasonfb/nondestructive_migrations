@@ -1,6 +1,4 @@
-
-[![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
-[![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
+## Introduction
 
 Nondestructive migrations, also known as data migrations, are a alternative kind of Rails migration. The data migrations operate exactly like schema migrations, except instead of running migrations to make changes to your schema (adding fields, dropping fields, adding tables, etc), you run data migrations to manipulate data in your app, enqueue or execute Resque jobs that require long-running processes. This happens in a Rails app for different reasons, usually to clean up or supplement data or architectural changes.
 
@@ -19,13 +17,19 @@ Data migrations functional EXACTLY like schema migrations except:
 3) You run them using rake data:migrate instead of rake db:migrate
 
 
-## Internal Dept
-Run the specs with 
+## Test Coverage
+Run the specs on this gem using
 ```
 appraisal rake spec
 ```
 
 Appraisal runs the specs against different versions of Rails. For more information, see https://github.com/thoughtbot/appraisal
+
+You can check out CodeClimate & Travis reports on this Gem here:
+[![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
+[![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
+
+
 
 ## Installation
 

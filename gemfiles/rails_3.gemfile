@@ -11,7 +11,7 @@ gem "rails", "3.2.19"
 
 group :test do
   gem "simplecov", :require => false
-  gem "generator_spec", :git => "git@github.com:jasonfb/generator_spec.git"
+  gem "generator_spec", :git => "https://github.com/jasonfb/generator_spec"
 end
 
 gemspec :path => "../"
