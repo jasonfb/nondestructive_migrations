@@ -19,6 +19,14 @@ Data migrations functional EXACTLY like schema migrations except:
 3) You run them using rake data:migrate instead of rake db:migrate
 
 
+## Internal Dept
+Run the specs with 
+```
+appraisal rake spec
+```
+
+Appraisal runs the specs against different versions of Rails. For more information, see https://github.com/thoughtbot/appraisal
+
 ## Installation
 
 Add this to your gemfile.
