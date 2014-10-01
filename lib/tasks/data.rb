@@ -1,6 +1,6 @@
 
 namespace :data do
-  MIGRATIONS_PATH = 'db/data_migrate'
+
 
   task :data_migration_dependencies => :environment do
     require 'nondestructive_migrations'
