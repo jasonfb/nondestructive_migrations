@@ -1,3 +1,7 @@
+# if ! Rails
+# end
+
+
 begin
   require 'byebug'
 rescue LoadError
