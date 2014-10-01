@@ -6,12 +6,12 @@ gem "appraisal"
 gem "guard"
 gem "guard-rspec"
 gem "rake"
-gem "rails", "4.1.6"
 gem "byebug", :platform => :mri_21
+gem "rails", "4.1.6"
 
 group :test do
   gem "simplecov", :require => false
-  gem "generator_spec", :path => "/Users/jason/Projects/generator_spec"
+  gem "generator_spec", :git => "git@github.com:jasonfb/generator_spec.git"
 end
 
 gemspec :path => "../"
