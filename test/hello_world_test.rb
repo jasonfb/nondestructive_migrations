@@ -5,6 +5,7 @@ require 'minitest/autorun'
 
 class BasicTest < Minitest::Test
   def test_hello
+
     assert true
   end
 end
