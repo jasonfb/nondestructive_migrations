@@ -1,10 +1,12 @@
-require 'rails'
+
 require 'active_record/migration'
 
 require 'test_helper'
-require 'minitest/autorun'
 
-class DataMigrations::RailtieTest < Minitest::Test
+
+
+
+class DataMigrations::RailtieTest < MINITEST_BASE_CLASS
   def test_that_the_migrate_task_can_run
     # Rake::Task['data:migrate'].invoke
   end

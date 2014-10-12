@@ -9,18 +9,11 @@ gem 'guard-rspec'
 gem 'rake'
 gem 'byebug', platform: :mri_21
 
-gem "rails", "4.1.6"
-gem 'simplecov', :require => false
-
-# gem 'redgreen'
+# this default version of rails is used only when running 'rake test'
+# when run with appraisal, this version gets overwritten by appraisal
+gem "rails", "4.1.6", :require => false
 
 
 group :test do
-
-  # gem 'genspec'
-  # gem 'test-unit'
-  # gem 'mocha'
-
-
-  # gem "generator_spec", git: 'https://github.com/jasonfb/generator_spec'
+  gem 'simplecov', :require => false
 end
