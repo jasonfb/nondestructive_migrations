@@ -1,3 +1,7 @@
+[![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
+[![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
+
+
 ## Introduction
 
 Nondestructive migrations, also known as data migrations, are a alternative kind of Rails migration. The data migrations operate exactly like schema migrations, except instead of running migrations to make changes to your schema (adding fields, dropping fields, adding tables, etc), you run data migrations to manipulate data in your app, enqueue or execute Resque jobs that require long-running processes. This happens in a Rails app for different reasons, usually to clean up or supplement data or architectural changes.
@@ -15,27 +19,6 @@ Data migrations functional EXACTLY like schema migrations except:
 2) They timestamps used to record which ones have been run are in a table called data_migrations instead of the normal schema_migrations table
 
 3) You run them using rake data:migrate instead of rake db:migrate
-
-
-## Test Coverage
-Run the specs on this gem using
-```
-rake test TESTOPTS="-v"
-```
-
-
-
-```
-appraisal rake test
-```
-
-Appraisal runs the specs against different versions of Rails. For more information, see https://github.com/thoughtbot/appraisal
-
-You can check out CodeClimate & Travis reports on this Gem here:
-[![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
-[![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
-
-
 
 ## Installation
 To add to your Rails project, follow these steps.
@@ -120,3 +103,21 @@ You can read more about doing the preboot feature on Heroku labs at https://devc
 2. Pre-boot the new app
 3. Heroku switches the incoming requests to use the new app
 4. Run data migrations (while new app is up & running)
+
+
+## Housekeeping
+You can run the specs on this gem against Rails 4.1.6 by running
+```
+rake test TESTOPTS="-v"
+```
+
+
+Or you can run the specs against Rails 3.2.19, 4.0.10, and 4.1.6 by using Appraisal (build-in).
+
+```
+appraisal rake test
+```
+
+Appraisal runs the specs against different versions of Rails. For more information, see https://github.com/thoughtbot/appraisal
+
+You can check out CodeClimate & Travis reports at the top of this README
