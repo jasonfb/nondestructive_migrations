@@ -1,25 +1,31 @@
 
-require 'rubygems'
-require 'bundler/setup'
 
-desc 'Default: run specs'
-task default: :spec
+require 'rake/testtask'
 
-# desc 'Copy sample spec database.yml over if not exists'
-# task :copy_db_config do
-#   cp 'spec/internal/config/database.yml.sample', 'spec/internal/config/database.yml'
-# end
-
-# task spec: [:copy_db_config]
-
-require 'rspec/core/rake_task'
-
-RSpec::Core::RakeTask.new do |t|
-  t.pattern = 'spec/**/*_spec.rb'
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  t.libs << 'lib'
+  t.libs << 'lib/generators'
+  t.pattern = 'test/**/*_test.rb'
 end
-# 
-# if !ENV["APPRAISAL_INITIALIZED"] && !ENV["TRAVIS"]
-#   task :default => :appraisal
-# end
 
-Bundler::GemHelper.install_tasks
+desc "Run tests"
+task :default => :test
+
+# require "rubygems"
+# require "bundler/setup"
+
+#
+# require 'rake/testtask'
+#
+# Rake::TestTask.new do |t|
+#   t.libs << 'lib'
+#   t.libs << 'test'
+#   t.pattern = 'test/**/*_test.rb'
+#   t.verbose = true
+# end
+#
+# # desc "Run tests"
+# task :default => :test
+#
+#

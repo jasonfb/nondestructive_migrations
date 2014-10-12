@@ -20,7 +20,13 @@ Data migrations functional EXACTLY like schema migrations except:
 ## Test Coverage
 Run the specs on this gem using
 ```
-appraisal rake spec
+rake test TESTOPTS="-v"
+```
+
+
+
+```
+appraisal rake test
 ```
 
 Appraisal runs the specs against different versions of Rails. For more information, see https://github.com/thoughtbot/appraisal

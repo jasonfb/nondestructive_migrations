@@ -1,2 +1,3 @@
 nondestructive_migrations-*.gem
 coverage/
+test/tmp/
