@@ -106,6 +106,15 @@ You can read more about doing the preboot feature on Heroku labs at https://devc
 4. Run data migrations (while new app is up & running)
 
 
+## Example App
+
+You can find the app I use to test against here: https://github.com/jasonfb/example-for-nondestructive-migrations
+
+Note the Gemfile has gem pointed with git parameter (directly to this repo). In yours you can omit git parameters to pull the latest release from rubygems. (This repo's master is working development, so it's probably best to use the last released Gem build).
+
+All that is really interesting in that app you will find in db/migrate (the schema migration to create the data migrations table), and db/data_migrate (where those data migrations live).
+
+
 ## Housekeeping
 You can run the specs on this gem against Rails 4.1.6 by running
 ```
