@@ -1,3 +1,4 @@
 nondestructive_migrations-*.gem
 coverage/
 test/tmp/
+gemfiles/*.gemfile.lock
