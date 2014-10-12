@@ -2,12 +2,19 @@
 require 'active_record/migration'
 
 require 'test_helper'
-
-
-
+# require 'rails/railties/lib/rails/tasks'
 
 class DataMigrations::RailtieTest < MINITEST_BASE_CLASS
+  def setup
+    load File.expand_path("../../../../lib/tasks/data.rb", __FILE__)
+    Rake::Task.define_task(:environment)
+    # ActiveRecord::Base.establish_connection
+    # Rake::Task['db:create']
+    # Rake::Task['db:migrate']
+  end
+
   def test_that_the_migrate_task_can_run
+    # getting ActiveRecord::ConnectionNotEstablished: ActiveRecord::ConnectionNotEstablished
     # Rake::Task['data:migrate'].invoke
   end
 
