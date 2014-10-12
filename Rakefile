@@ -1,5 +1,10 @@
 require 'rake/testtask'
-require 'minitest/autorun'
+
+
+# if Rails.version =~ /4.1/
+  require "minitest"
+  require 'minitest/autorun'
+# end
 
 Rake::TestTask.new do |t|
   t.libs << 'test'

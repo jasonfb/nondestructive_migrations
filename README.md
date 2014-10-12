@@ -1,3 +1,5 @@
+[![Version     ](https://img.shields.io/gem/v/nondestructive_migrations.svg?style=flat)](https://rubygems.org/gems/bundler)
+
 [![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
 [![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
 

@@ -9,7 +9,14 @@ require 'rails/generators'
 class DataMigrationGeneratorTest < Rails::Generators::TestCase
   tests DataMigrationGenerator
   destination File.expand_path("../../tmp", File.dirname(__FILE__))
+
   setup :prepare_destination
+
+  # if Rails.version =~ /4.1/
+  # else
+  #   setup
+  # end
+
   # teardown :destroy_files
 
   # DO NOT USE exec with testunit
