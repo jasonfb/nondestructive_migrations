@@ -1,4 +1,4 @@
-require 'test/test_helper'
+require 'test_helper'
 
 # This is the class that will test the datamigration generators
 
