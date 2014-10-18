@@ -35,7 +35,7 @@ gem 'nondestructive_migrations'
 ```
 rails generate data_migrations:install
 ```
-This will create a *schema* migration that will create the data_migrations table itself. Now execute that schema migration:
+This will create a *schema* migration that will create the data_migrations table itself. (There will be a table in your database called data_migrations which will have two columns: id, version. It works exactly like the schema_migrations table.) Now execute that schema migration (and, in turn, be sure to run this on Production):
 
 ```
 rake db:migrate

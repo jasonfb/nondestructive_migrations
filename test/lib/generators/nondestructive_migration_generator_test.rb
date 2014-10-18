@@ -1,8 +1,4 @@
 require 'test_helper'
-require 'minitest/autorun'
-
-require 'rails'
-require 'rails/generators'
 
 # This is the class that will create the SCHEMA migration
 # to create the table data_migrations

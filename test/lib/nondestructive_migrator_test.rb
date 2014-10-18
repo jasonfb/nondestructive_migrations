@@ -1,9 +1,9 @@
 require 'test_helper'
 
-require 'rails'
-require 'active_record/migration'
+# require 'rails'
+# require 'active_record/migration'
 
-class NondestructiveMigratorTest < MINITEST_BASE_CLASS
+class NondestructiveMigratorTest < Minitest::Test
   def test_nondestructive_migrator
     assert NondestructiveMigrator
   end

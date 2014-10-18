@@ -1,10 +1,9 @@
-
-require 'active_record/migration'
-
 require 'test_helper'
+
+# require 'active_record/migration'
 # require 'rails/railties/lib/rails/tasks'
 
-class DataMigrations::RailtieTest < MINITEST_BASE_CLASS
+class DataMigrations::RailtieTest < Minitest::Test
   def setup
     load File.expand_path("../../../../lib/tasks/data.rb", __FILE__)
     Rake::Task.define_task(:environment)

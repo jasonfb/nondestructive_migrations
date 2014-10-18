@@ -23,6 +23,8 @@ gem 'byebug', platform: :mri_21
 # ENABLE FOR testing Rails 4.1
 gem "rails", "4.1.6", :require => false
 
+gem 'minitest-rg'
+
 group :test do
   gem 'simplecov', :require => false
 end

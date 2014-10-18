@@ -8,6 +8,7 @@ gem "guard-rspec"
 gem "rake"
 gem "byebug", :platform => :mri_21
 gem "rails", "4.0.10"
+gem "minitest-rg"
 gem "minitest-rails", "~> 1.0"
 
 group :test do

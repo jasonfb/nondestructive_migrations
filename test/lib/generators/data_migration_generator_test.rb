@@ -1,8 +1,4 @@
-require 'test_helper'
-require 'minitest/autorun'
-
-require 'rails'
-require 'rails/generators'
+require 'test/test_helper'
 
 # This is the class that will test the datamigration generators
 
