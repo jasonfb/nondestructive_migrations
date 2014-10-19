@@ -11,7 +11,7 @@ class DataMigrationGeneratorTest < Rails::Generators::TestCase
   teardown :destroy_files
 
   def destroy_files
-    FileUtils.rm_rf("test/tmp/")
+    FileUtils.rm_rf("test/tmp/db/data_migrate/")
   end
 
   def test_migration
@@ -20,6 +20,7 @@ class DataMigrationGeneratorTest < Rails::Generators::TestCase
     assert_migration "db/data_migrate/hello_world_migration.rb"
   end
 
+  # doesn't pass on travis consistently
   # def test_file_is_created
   #   migration = "xyz"
   #   run_generator [migration]
