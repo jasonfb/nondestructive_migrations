@@ -15,7 +15,8 @@ module DataMigrations
     end
     
     def copy_initializer
-      migration_template "create_data_migrations.rb", "db/migrate/create_data_migrations.rb"
+      migration_template "create_data_migrations.rb",
+                         "db/migrate/create_data_migrations.rb"
     end
   end    
 end

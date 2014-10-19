@@ -8,27 +8,24 @@ class DataMigrationGeneratorTest < Rails::Generators::TestCase
 
   setup :prepare_destination
 
-  # if Rails.version =~ /4.1/
-  # else
-  #   setup
-  # end
+  teardown :destroy_files
 
-  # teardown :destroy_files
-
-  # DO NOT USE exec with testunit
-  # def destroy_files
-  #   # puts "cleaning up generated files ..."
-  #   exec "rm -rf test/tmp/"
-  # end
+  def destroy_files
+    FileUtils.rm_rf("test/tmp/")
+  end
 
   def test_migration
-    # assert false
     migration = "hello_world_migration"
     run_generator [migration]
+
     assert_migration "db/data_migrate/hello_world_migration.rb"
-    # assert_migration "db/migrate/create_data_migrations.rb", /class CreateDataMigrations < ActiveRecord::Migration/
-    # assert_migration "db/migrate/create_data_migrations.rb", /create_table :data_migrations do |t|/
-    # assert_migration "db/migrate/create_data_migrations.rb", /drop_table :data_migrations/
-    # destroy_files
   end
+
+  def test_file_is_created
+    migration = "xyz"
+    run_generator [migration]
+    generated_filename = Dir.entries("test/tmp/db/data_migrate/")[2]
+    assert_equal 14, (generated_filename =~ /_xyz.rb$/)
+  end
+
 end
