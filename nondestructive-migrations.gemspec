@@ -6,7 +6,8 @@ Gem::Specification.new do |s|
   s.description = "Separate schema-only migrations from nondestrucitve (data) migrations in your Rails app"
   s.authors     = ["Jason Fleetwood-Boldt"]
   s.email       = 'jason@datatravels.com'
-  s.files       = ["lib/nondestructive_migrations.rb"]
+  s.files       = ["lib/generators/data_migration_install_generator.rb",
+                   "lib/nondestructive_migrations.rb"]
   s.homepage    =
     'https://github.com/jasonfb/nondestructive_migrations'
   s.license       = 'MIT'
