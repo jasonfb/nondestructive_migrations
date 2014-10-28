@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nondestructive_migrations (0.9.7)
+    nondestructive_migrations (1.0)
       activerecord
 
 GEM
