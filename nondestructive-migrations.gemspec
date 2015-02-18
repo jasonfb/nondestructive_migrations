@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'nondestructive_migrations'
-  s.version     = '1.0'
+  s.version     = '1.1'
   s.date        = '2014-10-27'
   s.summary     = "Nondestructive (data-only) migrations for your Rails app"
   s.description = "Separate schema-only migrations from nondestrucitve (data) migrations in your Rails app"
@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
                    "lib/nondestructive_migrations.rb",
                    "lib/generators/templates/create_data_migrations.rb",
                    "lib/nondestructive_migrations/railtie.rb",
-                   "lib/tasks/data.rb"]
-  s.homepage    =
-    'https://github.com/jasonfb/nondestructive_migrations'
+                   "lib/tasks/data.rb",
+                   "lib/active_record/data_migration.rb"]
+  s.homepage    =  'https://github.com/jasonfb/nondestructive_migrations'
   s.license       = 'MIT'
   
-  s.add_runtime_dependency 'activerecord'
+  s.add_runtime_dependency 'activerecord', ">= 4.0"
 end
