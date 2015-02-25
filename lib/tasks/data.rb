@@ -18,8 +18,8 @@ namespace :data do
 
   desc "marks all as already run (#{MIGRATIONS_PATH})"
   task :mark_all_as_run => :data_migration_dependencies do
-    exit(1) unless Rails.env.development?
-    say "Marking all migrations found in #{MIGRATIONS_PATH} as run..."
+    exit(1) unless Rails.env.development? or Rails.env.test?
+    puts "Marking all migrations found in #{MIGRATIONS_PATH} as run..."
     Dir.open(MIGRATIONS_PATH).each do |file_name|
       i = file_name.split('_').first.to_i
       next if i == 0
