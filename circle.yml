@@ -1,0 +1,8 @@
+# No database setup required for this gem
+database:
+  override:
+    - echo "no database setup"
+
+test:
+  override:
+    - rake test TESTOPTS="-v"
