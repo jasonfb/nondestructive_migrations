@@ -9,5 +9,19 @@ class NondestructiveMigrator < ActiveRecord::Migrator
     def schema_migrations_table_name
       'data_migrations'
     end
+
+    def migrate(*args)
+      if restore_table_name = ActiveRecord::Base.respond_to?(:schema_migrations_table_name=)
+        orig_table = ActiveRecord::Base.schema_migrations_table_name
+        ActiveRecord::Base.schema_migrations_table_name= schema_migrations_table_name
+      else
+        orig_table = nil
+      end
+      begin
+        super
+      ensure
+        ActiveRecord::Base.schema_migrations_table_name = orig_table if restore_table_name
+      end
+    end
   end
 end

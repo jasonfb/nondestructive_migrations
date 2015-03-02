@@ -6,7 +6,7 @@ gem "appraisal"
 gem 'guard'
 gem 'guard-rspec'
 gem 'rake'
-gem 'byebug', platform: :mri_21
+gem 'byebug', platform: [:mri_21, :mri_20]
 
 
 
