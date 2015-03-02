@@ -7,8 +7,8 @@ require 'tasks/data.rb'
 class DataMigrations::RailtieTest < Minitest::Test
   def setup
 
-    FileUtils::mkdir_p './config/db/data_migrate'
-    dummy_migration_file = File.open( "config/db/data_migrate/20140101125959_xyz.rb","w" )
+    FileUtils::mkdir_p './db/data_migrate'
+    dummy_migration_file = File.open( "db/data_migrate/20140101125959_xyz.rb","w" )
     dummy_migration_file <<  <<-eos
     class Xyz < ActiveRecord::Migration
       def up
@@ -33,6 +33,11 @@ eos
   def test_that_the_migrate_task_can_run
     NondestructiveMigrator.expects(:migrate).with(MIGRATIONS_PATH)
     Rake::Task['data:migrate'].execute
+  end
+
+  def test_that_the_migrate_creates_the_data_migrations_table
+    Rake::Task['data:migrate'].execute
+    assert_equal [{"version" => '20140101125959',0=>"20140101125959"}], ActiveRecord::Base.connection.execute('select * from data_migrations')
   end
 
   def test_that_the_rollback_task_can_run
