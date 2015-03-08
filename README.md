@@ -97,6 +97,26 @@ Migrate up the specified versions.
 Rollback the last version. Generally data migrations don't have any "down" associated with them so use this only under extreme circumstances. 
 
 
+#
+
+As [![sgringwe](https://github.com/sgringwe)](https://github.com/sgringwe) pointed out to me, by default your data migration will run in a single transaction (just like a schema migration).
+
+To turn this off, add `disable_ddl_transaction!` to the top of your migration, like so:
+
+```
+class UpdatePhoneNumbers < ActiveRecord::Migration
+  disable_ddl_transaction!
+  def up
+    # do stuff here
+  end
+
+  def down
+    raise ActiveRecord::IrreversibleMigration
+  end
+end
+```
+
+
 # Two Kinds of Deployment
 You can read more about doing the preboot feature on Heroku labs at https://devcenter.heroku.com/articles/labs-preboot. (Preboot is an "experimental" feature on Heroku.)
 
@@ -130,8 +150,11 @@ alias dd-prod="heroku features:disable preboot -a yourapp-production && git chec
 alias ndd-prod="git checkout master && git pull && git push h-prod master:master && heroku run rake data:migrate -a yourapp-production"
 
 
-Here you can add these as shell scripts (I user bash). dd-prod is my short hand for "destructive deploy to prod." This is what I use when I want to do a schema change migration. Notice that it first disables preboot, expecting it to be on on your Heroku deploy. ndd-prod means "nondestructive deploy to production". Notice that it assumes preboot is already enabled on your Heroku instance and only runs the data migrations. It does not run the schema migrations.
+Here you can add these as shell scripts (I use bash). dd-prod is my short hand for "destructive deploy to prod." This is what I use when I want to do a schema change migration. Notice that it first disables preboot, expecting it to be on on your Heroku deploy. ndd-prod means "nondestructive deploy to production". Notice that it assumes preboot is already enabled on your Heroku instance and only runs the data migrations. It does not run the schema migrations.
 
+Alternatively, if you don't like the switching preboot off & on part of that, you can deploy a schema-migration code on Heorku and watch the deploy yourself manually. Immediately upon seeing the "Launching..." step, quickly flip your app into maintenance mode with `heroku maintenance:on`
+
+While maintenance is on, run your schema migrations. Restart your app and wait approximately 1-2 minutes, then turn maintenance off. That should avoid the problem of having two apps running at the same time while you're migrating. 
 
 
 ## Example App
