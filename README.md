@@ -2,6 +2,18 @@
 [![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
 [![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
 
+## Warning
+Version 1.0 has a bug if you run it under Rails 4. Speicifcally, it will run your data migrations but it won't look for the data_migrations table, it will instead use the schema_migrations table.
+
+If you have a Rails 3 app, use version 1.0 of this gem.
+
+If you upgrade to Rails 4 (or start with a Rails 4 app), use version 1.1 of this gem.
+
+If you have a Rails 3 app that you are upgrading to Rails 4 and you fail to upgrade this gem, version 1.0 of this gem when run under a Rails 4 app will re-run all your old data migrations.  Paying attention to the version number when upgrading will avoid this problem.
+
+I sincerely regret this but as I did not know about it myself until I upgraded my own app. At the time, since I had already released Version 1.0 of this, I decided not to yank the version and simply leave this note with the version bump.
+
+Basically version 1.1 drops support for Rails 3, and I have removed the Rails 3 specs.
 
 ## Introduction
 
@@ -90,20 +102,36 @@ You can read more about doing the preboot feature on Heroku labs at https://devc
 
 ## Schema-Change Deploys
 
-1. Compile the assets
-2. Enable maintenance-mode
-3. Launch the new app
-4. Run schema migrations
-5. Reboot the app (force Rails to pick up new schema changes)
-6. Disable maintenance mode
+1. Switch OFF preboot feature
+2. Deploy to Heroku
+3. Enable maintenance-mode
+4. Run schema migrations  (app reboots)
+5. Disable maintenance mode
+6. Run the data migrations
+7. Switch preboot feature back ON
 
 
 ## Zero-Downtime deploys (no schema migrations)
 
-1. Compile the assets
-2. Pre-boot the new app
-3. Heroku switches the incoming requests to use the new app
-4. Run data migrations (while new app is up & running)
+(assume preboot is already on)
+1. Deploy to heroku with preboot on
+2. Heroku switches the incoming requests to use the new app
+3. Run data migrations (while new app is up & running)
+
+Basically what you want to do is keep Heroku Preboot ON on your app at all times, except when you want to do a schama-change migration. (see https://devcenter.heroku.com/articles/preboot)
+
+The following example assumes your app is named "yourapp-production" and you have a git origin name for heroku (this is what gets configured in .git/config) of "h-prod" that points to your Heroku Git URL for that app.
+
+
+~/.bash_profile
+
+alias dd-prod="heroku features:disable preboot -a yourapp-production && git checkout master && git pull && git push h-prod master:master && heroku maintenance:on -a yourapp-production && heroku run rake db:migrate -a yourapp-production && heroku maintenance:off -a yourapp-production && heroku run rake data:migrate -a yourapp-production && heroku features:enable preboot -a yourapp-production"
+
+alias ndd-prod="git checkout master && git pull && git push h-prod master:master && heroku run rake data:migrate -a yourapp-production"
+
+
+Here you can add these as shell scripts (I user bash). dd-prod is my short hand for "destructive deploy to prod." This is what I use when I want to do a schema change migration. Notice that it first disables preboot, expecting it to be on on your Heroku deploy. ndd-prod means "nondestructive deploy to production". Notice that it assumes preboot is already enabled on your Heroku instance and only runs the data migrations. It does not run the schema migrations.
+
 
 
 ## Example App
@@ -122,7 +150,7 @@ rake test TESTOPTS="-v"
 ```
 
 
-Or you can run the specs against Rails 3.2.19, 4.0.10, and 4.1.6 by using Appraisal (build-in).
+Or you can run the specs against Rails 4.0.10, and 4.1.6 by using Appraisal (build-in).
 
 ```
 appraisal rake test
