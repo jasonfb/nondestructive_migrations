@@ -2,7 +2,15 @@
 [![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
 [![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
 
-## Warning
+## Rails 4
+
+Use Version 1.1 of this GEm
+
+## Rails 3
+
+Use Version 1.0 of this Gem
+
+# Upgrade Warning
 Version 1.0 has a bug if you run it under Rails 4. Speicifcally, it will run your data migrations but it won't look for the data_migrations table, it will instead use the schema_migrations table.
 
 If you have a Rails 3 app, use version 1.0 of this gem.
