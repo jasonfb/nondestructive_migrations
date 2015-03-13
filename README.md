@@ -118,7 +118,7 @@ end
 
 
 # Two Kinds of Deployment
-You can read more about doing the preboot feature on Heroku labs at https://devcenter.heroku.com/articles/labs-preboot. (Preboot is no longer an "experimental" feature on Heroku.)
+You can read more about doing the preboot feature on Heroku at https://devcenter.heroku.com/articles/preboot (Preboot is no longer an "experimental" feature on Heroku.)
 
 ## Schema-Change Deploys
 

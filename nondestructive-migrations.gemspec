@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'nondestructive_migrations'
   s.version     = '1.1'
-  s.date        = '2014-10-27'
+  s.date        = '2015-03-12'
   s.summary     = "Nondestructive (data-only) migrations for your Rails app"
   s.description = "Separate schema-only migrations from nondestrucitve (data) migrations in your Rails app"
   s.authors     = ["Jason Fleetwood-Boldt"]
