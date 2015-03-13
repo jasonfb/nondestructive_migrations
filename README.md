@@ -4,7 +4,7 @@
 
 ## Rails 4
 
-Use Version 1.1 of this GEm
+Use Version 1.1 of this Gem
 
 ## Rails 3
 
