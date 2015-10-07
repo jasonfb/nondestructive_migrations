@@ -12,15 +12,15 @@ class <%= migration_class_name %> < ActiveRecord::Migration
     # Write primary migration code here. Consider printing updates along the way, especially for large data migrations
 
     print_ending_condition
-  rescue
+  rescue => exception
     Bugsnag.notify(
-      'Data migration raised an exception and must be fixed. Authoring information included.',
+      exception,
       authoring_information: authoring_information
     )
 
     # Make sure to still fail for real so that this data migration does not get record as run
     # and is attempted again once fixed.
-    fail 'Data migration raised an exception and must be fixed.'
+    raise exception
   end
 
   def down
@@ -50,7 +50,6 @@ private
   #   Example: 'Kick off an elasticsearch reindex of applications as soon as possible so that results are correct.'
   def authoring_information
     {
-      name: nil,
       email: 'nil@joinhandshake.com',
       consequences_on_failure: nil,
       runbook_on_failure: nil
@@ -59,8 +58,7 @@ private
 
   # We don't data migrations being created without authoring information.
   def authoring_information_present?
-    authoring_information[:name].present? and
-      authoring_information[:email] != 'nil@joinhandshake.com' and
+    authoring_information[:email] != 'nil@joinhandshake.com' and
       authoring_information[:consequences_on_failure].present? and
       authoring_information[:runbook_on_failure].present?
   end
