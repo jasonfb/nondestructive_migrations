@@ -34,7 +34,7 @@ private
   # Exampel: ou are deleting duplicate data and only expect 2,000 duplicates after initial research,
   # but it turns out there are 100,000 when you run this, you may want to abort.
   def data_is_as_expected?
-    # return false if memoized_relation_to_operate_on.count \>\ 20
+    # return false if relation_to_operate_on.count > 20
     # return false if DependentRecord.find_by(name: 'New Name').nil?
     true
   end
