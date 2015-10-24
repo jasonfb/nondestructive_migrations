@@ -129,9 +129,7 @@ private
   end
 
   def webhook_success_text
-    rv = "*Successfully ran* migration #{self.class.name}.\n"
-    rv += "*Output Logs*: #{logs_url}"
-    rv
+    "*Successfully ran* migration #{self.class.name} in #{Rails.env.env}."
   end
 
   def webhook_fail_hash(exception, channel)
@@ -144,7 +142,7 @@ private
   end
 
   def webhook_fail_text(exception)
-    rv = "*Failed to run* (#{AUTHOR_EMAIL}) #{AUTHOR_SLACK_HANDLE}'s migration #{self.class.name}.\n"
+    rv = "*Failed to run* (#{AUTHOR_EMAIL}) #{AUTHOR_SLACK_HANDLE}'s migration #{self.class.name} in #{Rails.env.env}.\n"
     rv += "*Consequences*: #{FAILURE_CONSEQUENCES}.\n*Runbook*: #{FAILURE_RUNBOOK}.\n"
     rv += "```#{exception.message}\n#{exception.backtrace.first(4)}...```"
     rv
@@ -160,9 +158,5 @@ private
 
   def slack_emoji
     ':handshake:'
-  end
-
-  def logs_url
-    'https://papertrailapp.com/systems/handshake-production/events?q=run.'
   end
 end
