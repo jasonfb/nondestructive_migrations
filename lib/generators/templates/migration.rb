@@ -129,7 +129,7 @@ private
   end
 
   def webhook_success_text
-    "*Successfully ran* migration #{self.class.name} in #{Rails.env.env}."
+    "*Successfully ran* migration #{self.class.name} in #{Rails.env}."
   end
 
   def webhook_fail_hash(exception, channel)
@@ -142,7 +142,7 @@ private
   end
 
   def webhook_fail_text(exception)
-    rv = "*Failed to run* (#{AUTHOR_EMAIL}) #{AUTHOR_SLACK_HANDLE}'s migration #{self.class.name} in #{Rails.env.env}.\n"
+    rv = "*Failed to run* (#{AUTHOR_EMAIL}) #{AUTHOR_SLACK_HANDLE}'s migration #{self.class.name} in #{Rails.env}.\n"
     rv += "*Consequences*: #{FAILURE_CONSEQUENCES}.\n*Runbook*: #{FAILURE_RUNBOOK}.\n"
     rv += "```#{exception.message}\n#{exception.backtrace.first(4)}...```"
     rv
