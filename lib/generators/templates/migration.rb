@@ -109,15 +109,14 @@ private
     return unless ENV['DATA_MIGRATIONS_SLACK_WEBHOOK'].present?
 
     uri = URI.parse(ENV['DATA_MIGRATIONS_SLACK_WEBHOOK'])
-    parms_form = { payload: => payload.to_json }
+    parms_form = { payload: payload.to_json }
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
 
     request = Net::HTTP::Post.new(uri.request_uri)
     request.set_form_data(parms_form)
 
-    response = http.request(request)
-    ap response
+    http.request(request)
   end
 
   def webhook_success_hash(channel)
