@@ -1,4 +1,4 @@
-class <%= migration_class_name %> < NonDestructiveMigration
+class <%= migration_class_name %> < DataMigrations::BaseMigration
   # Allows the author of this data migration to add information for whomever ends up running or deploying it.
   # Name and email:
   #   Simply for deployer to quickly find comitter and fix issue.

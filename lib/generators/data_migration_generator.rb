@@ -1,6 +1,4 @@
-
 # this is the generator used to create a data migration
-
 class DataMigrationGenerator < ActiveRecord::Generators::Base
    self.source_root(File.expand_path("../templates", __FILE__))
 
