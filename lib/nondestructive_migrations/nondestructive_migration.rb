@@ -1,12 +1,48 @@
 module DataMigrations
-  class BaseMigration < ActiveRecord::Migration
+  module BaseMigration
     require "net/http"
     require "uri"
     require "json"
 
-    # This ensures that the data migration does not run within a transaction
-    # and therefore does not lock the database during long-running data migrations.
-    disable_ddl_transaction!
+    module ClassMethods
+      def migration_information(*args)
+        @migration_information ||= {}
+        if block_given?
+          yield
+        else
+          @migration_information
+        end
+      end
+
+      def author_email(val)
+        @migration_information[:author_email] = val
+      end
+
+      def author_slack_handle(val)
+        @migration_information[:author_slack_handle] = val
+      end
+
+      def failure_consequences(val)
+        @migration_information[:failure_consequences] = val
+      end
+
+      def failure_runbook(val)
+        @migration_information[:failure_runbook] = val
+      end
+
+      def run_strategy(val)
+        @migration_information[:run_strategy] = val
+      end
+    end
+
+    # If this module is included, have the parent class extend the above class methods
+    # http://www.railstips.org/blog/archives/2009/05/15/include-vs-extend-in-ruby/
+    def self.included(klass)
+      klass.extend DataMigrations::BaseMigration::ClassMethods
+    end
+
+    # Instance Methods #
+    attr_accessor :progress
 
     def up
       define_queries
@@ -18,26 +54,26 @@ module DataMigrations
 
       unless Rails.env.development?
         send_slack_webhook(webhook_success_hash(nil))
-        send_slack_webhook(webhook_success_hash(AUTHOR_SLACK_HANDLE))
+        send_slack_webhook(webhook_success_hash(self.class.migration_information[:author_slack_handle]))
       end
     rescue => exception
       Bugsnag.notify(
         exception,
         authoring_information: {
-          email_address: AUTHOR_EMAIL,
-          slack_handle: AUTHOR_SLACK_HANDLE,
-          failure_consequences: FAILURE_CONSEQUENCES,
-          failure_runbook: FAILURE_RUNBOOK,
+          email_address: self.class.migration_information[:author_email],
+          slack_handle: self.class.migration_information[:author_slack_handle],
+          failure_consequences: self.class.migration_information[:failure_consequences],
+          failure_runbook: self.class.migration_information[:failure_runbook],
         }
       )
 
       # Send the error to slack and ping user.
       unless Rails.env.development?
         send_slack_webhook(webhook_fail_hash(exception, nil))
-        send_slack_webhook(webhook_fail_hash(exception, AUTHOR_SLACK_HANDLE))
+        send_slack_webhook(webhook_fail_hash(exception, self.class.migration_information[:author_slack_handle]))
       end
 
-      # Make sure to still fail for real so that this data migration does not get record as run
+      # Make sure to still fail for real so that this data migration does not get recorded as run
       # and is attempted again once fixed.
       raise exception
     end
@@ -50,12 +86,12 @@ module DataMigrations
 
     # We don't data migrations being created without authoring information.
     def authoring_information_present?
-      AUTHOR_EMAIL.present? and
-        ValidateEmail.valid?(AUTHOR_EMAIL) and
-        AUTHOR_SLACK_HANDLE.present? and
-        AUTHOR_SLACK_HANDLE.starts_with?('@') and
-        FAILURE_CONSEQUENCES.present? and
-        FAILURE_RUNBOOK.present?
+      self.class.migration_information[:author_email].present? and
+        ValidateEmail.valid?(self.class.migration_information[:author_email]) and
+        self.class.migration_information[:author_slack_handle].present? and
+        self.class.migration_information[:author_slack_handle].starts_with?('@') and
+        self.class.migration_information[:failure_consequences].present? and
+        self.class.migration_information[:failure_runbook].present?
     end
 
     ### Slack Messaging ###
@@ -83,7 +119,7 @@ module DataMigrations
     end
 
     def webhook_success_text
-      "*Successfully ran* migration #{self.class.name} in #{Rails.env}."
+      "*Successfully ran* migration #{self.class.migration_information[:name]} in #{Rails.env}."
     end
 
     def webhook_fail_hash(exception, channel)
@@ -96,9 +132,9 @@ module DataMigrations
     end
 
     def webhook_fail_text(exception)
-      rv = "*Failed to run* (#{AUTHOR_EMAIL}) #{AUTHOR_SLACK_HANDLE}'s migration #{self.class.name} in #{Rails.env}.\n"
-      rv += "*Consequences*: #{FAILURE_CONSEQUENCES}.\n*Runbook*: #{FAILURE_RUNBOOK}.\n"
-      rv += "```#{exception.message}\n#{exception.backtrace.first(4)}...```"
+      rv = "*Failed to run* (#{self.class.migration_information[:author_email]}) #{self.class.migration_information[:author_slack_handle]}'s migration #{self.class.migration_information[:name]} in #{Rails.env}.\n"
+      rv += "*Consequences*: #{self.class.migration_information[:failure_consequences]}.\n*Runbook*: #{self.class.migration_information[:failure_runbook]}.\n"
+      rv += "```#{exception.message}\n#{exception.backtrace.first(10)}...```"
       rv
     end
 
@@ -113,6 +149,5 @@ module DataMigrations
     def slack_emoji
       ':handshake:'
     end
-
   end
 end

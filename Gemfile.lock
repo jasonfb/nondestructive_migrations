@@ -82,7 +82,7 @@ GEM
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.10.1)
-    mysql2 (0.3.16)
+    pg (0.18.4)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -153,11 +153,15 @@ DEPENDENCIES
   byebug
   guard
   guard-rspec
+  minitest
   minitest-rg
   mocha
-  mysql2
   nondestructive_migrations!
-  rails (= 4.1.6)
+  pg
+  rails
   rake
   simplecov
   sqlite3
+
+BUNDLED WITH
+   1.10.6

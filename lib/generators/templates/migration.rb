@@ -1,17 +1,16 @@
-class <%= migration_class_name %> < DataMigrations::BaseMigration
-  # Allows the author of this data migration to add information for whomever ends up running or deploying it.
-  # Name and email:
-  #   Simply for deployer to quickly find comitter and fix issue.
-  # Consequences on failure:
-  #   Allows author to explain what could go wrong if this data migration fails.
-  #   Example: 'All applications will be listed as not qualified on elasticsearch search results, even if they actualy are'.
-  # Runbook on failure:
-  #   Can be used for the author to explain what steps to take to fix the issue on potential failure scenarios.
-  #   Example: 'Kick off an elasticsearch reindex of applications as soon as possible so that results are correct.'
-  AUTHOR_EMAIL = nil
-  AUTHOR_SLACK_HANDLE = nil
-  FAILURE_CONSEQUENCES = nil
-  FAILURE_RUNBOOK = nil
+class <%= migration_class_name %> < ActiveRecord::Migration
+  include DataMigrations::BaseMigration
+
+  # This ensures that the data migration does not run within a transaction
+  # and therefore does not lock the database during long-running data migrations.
+  disable_ddl_transaction!
+
+  migration_information do
+    author_email nil
+    author_slack_handle nil
+    failure_consequences nil # Allows author to explain what could go wrong if this data migration fails.
+    failure_runbook nil # Can be used for the author to explain what steps to take to fix the issue on potential failure scenarios.
+  end
 
   # Define common queries that you will be using for printing start information, running the migration itself
   # and printing the ending condition in DRY global variables.
@@ -20,11 +19,24 @@ class <%= migration_class_name %> < DataMigrations::BaseMigration
 
   # Often times certain things must be in place properly for the data migration to run, and you
   # may want to abort the data migration. Return false here if something is not as expected.
-  # Exampel: ou are deleting duplicate data and only expect 2,000 duplicates after initial research,
+  # Example: ou are deleting duplicate data and only expect 2,000 duplicates after initial research,
   # but it turns out there are 100,000 when you run this, you may want to abort.
   def data_is_as_expected?
-    # return false if @relation_to_operate_on.count > 20
     # return false if DependentRecord.find_by(name: 'New Name').nil?
+
+    case Rails.env.to_sym
+    when :development
+      true
+    when :staging
+      true
+    when :demo
+      true
+    when :production
+      # return false if relation_to_operate_on.count > 20_000
+    else
+      raise "Encountered unknown rails env of #{Rails.env} in data migration."
+    end
+
     true
   end
 
