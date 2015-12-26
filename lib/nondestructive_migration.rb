@@ -1,4 +1,4 @@
-class NonDestructiveMigration < ActiveRecord::Migration
+class NondestructiveMigration < ActiveRecord::Migration
   require "net/http"
   require "uri"
   require "json"

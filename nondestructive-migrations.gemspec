@@ -12,10 +12,11 @@ Gem::Specification.new do |s|
                    "lib/nondestructive_migrations.rb",
                    "lib/generators/templates/create_data_migrations.rb",
                    "lib/nondestructive_migrations/railtie.rb",
-                   "lib/tasks/data.rb"]
+                   "lib/tasks/data.rb"
+                   "lib/nondestrucitve_migration.rb"]
   s.homepage    =
     'https://github.com/jasonfb/nondestructive_migrations'
   s.license       = 'MIT'
-  
+
   s.add_runtime_dependency 'activerecord'
 end
