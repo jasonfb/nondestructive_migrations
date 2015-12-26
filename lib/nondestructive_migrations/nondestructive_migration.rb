@@ -5,7 +5,7 @@ module DataMigrations
     require "json"
 
     module ClassMethods
-      def migration_information(*args)
+      def migration_information
         @migration_information ||= {}
         if block_given?
           yield
@@ -40,9 +40,6 @@ module DataMigrations
     def self.included(klass)
       klass.extend DataMigrations::BaseMigration::ClassMethods
     end
-
-    # Instance Methods #
-    attr_accessor :progress
 
     def up
       define_queries

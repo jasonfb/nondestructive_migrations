@@ -7,7 +7,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
   migration_information do
     author_email nil
-    author_slack_handle nil
+    author_slack_handle nil # Don't forget the '@' in front
     failure_consequences nil # Allows author to explain what could go wrong if this data migration fails.
     failure_runbook nil # Can be used for the author to explain what steps to take to fix the issue on potential failure scenarios.
   end
@@ -19,7 +19,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
   # Often times certain things must be in place properly for the data migration to run, and you
   # may want to abort the data migration. Return false here if something is not as expected.
-  # Example: ou are deleting duplicate data and only expect 2,000 duplicates after initial research,
+  # Example: You are deleting duplicate data and only expect 2,000 duplicates after initial research,
   # but it turns out there are 100,000 when you run this, you may want to abort.
   def data_is_as_expected?
     # return false if DependentRecord.find_by(name: 'New Name').nil?
