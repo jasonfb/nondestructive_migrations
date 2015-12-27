@@ -2,7 +2,3 @@
 database:
   override:
     - echo "no database setup"
-
-test:
-  override:
-    - rake test TESTOPTS="-v"
