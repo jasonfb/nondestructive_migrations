@@ -6,10 +6,11 @@ class <%= migration_class_name %> < ActiveRecord::Migration
   disable_ddl_transaction!
 
   migration_information do
-    author_email nil
-    author_slack_handle nil # Don't forget the '@' in front
+    author_email "<%= ENV['MIGRATION_EMAIL'] %>"
+    author_slack_handle "<%= ENV['MIGRATION_SLACK_HANDLE'] %>" # Don't forget the '@' in front
     failure_consequences nil # Allows author to explain what could go wrong if this data migration fails.
     failure_runbook nil # Can be used for the author to explain what steps to take to fix the issue on potential failure scenarios.
+    name "<%= migration_class_name %>"
   end
 
   # Define common queries that you will be using for printing start information, running the migration itself
