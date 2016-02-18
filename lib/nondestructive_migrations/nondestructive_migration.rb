@@ -34,8 +34,8 @@ module DataMigrations
         @migration_information[:run_strategy] = val
       end
 
-      def name(val)
-        @migration_information[:name] = val
+      def migration_name(val)
+        @migration_information[:migration_name] = val
       end
     end
 
@@ -65,6 +65,7 @@ module DataMigrations
           slack_handle: self.class.migration_information[:author_slack_handle],
           failure_consequences: self.class.migration_information[:failure_consequences],
           failure_runbook: self.class.migration_information[:failure_runbook],
+          migration_name: self.class.migration_information[:migration_name],
         }
       )
 
@@ -120,7 +121,7 @@ module DataMigrations
     end
 
     def webhook_success_text
-      "*Successfully ran* migration #{self.class.migration_information[:name]} in #{Rails.env}."
+      "*Successfully ran* migration #{self.class.migration_information[:migration_name]} in #{Rails.env}."
     end
 
     def webhook_fail_hash(exception, channel)
@@ -133,7 +134,7 @@ module DataMigrations
     end
 
     def webhook_fail_text(exception)
-      rv = "*Failed to run* (#{self.class.migration_information[:author_email]}) #{self.class.migration_information[:author_slack_handle]}'s migration #{self.class.migration_information[:name]} in #{Rails.env}.\n"
+      rv = "*Failed to run* (#{self.class.migration_information[:author_email]}) #{self.class.migration_information[:author_slack_handle]}'s migration #{self.class.migration_information[:migration_name]} in #{Rails.env}.\n"
       rv += "*Consequences*: #{self.class.migration_information[:failure_consequences]}.\n*Runbook*: #{self.class.migration_information[:failure_runbook]}.\n"
       rv += "```#{exception.message}\n#{exception.backtrace.first(10)}...```"
       rv
