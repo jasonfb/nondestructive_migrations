@@ -33,6 +33,10 @@ module DataMigrations
       def run_strategy(val)
         @migration_information[:run_strategy] = val
       end
+
+      def name(val)
+        @migration_information[:name] = val
+      end
     end
 
     # If this module is included, have the parent class extend the above class methods
