@@ -3,6 +3,7 @@ module DataMigrations
     require "net/http"
     require "uri"
     require "json"
+    require "valid_email/validate_email"
 
     module ClassMethods
       def migration_information
