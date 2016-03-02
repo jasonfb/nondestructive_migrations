@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'minitest'
   s.add_runtime_dependency 'activerecord'
+  s.add_runtime_dependency 'valid_email'
 end
