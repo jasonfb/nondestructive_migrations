@@ -130,7 +130,8 @@ module DataMigrations
         channel: channel || default_slack_channel,
         username: slack_username,
         icon_emoji: slack_emoji,
-        text: webhook_fail_text(exception)
+        text: webhook_fail_text(exception),
+        link_names: 1
       }
     end
 
