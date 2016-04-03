@@ -12,27 +12,6 @@ Added to this version are:
 
 4) Protections and structure for operating on data carefully.
 
-## Rails 4
-
-Use Version 1.1 of this Gem
-
-## Rails 3
-
-Use Version 1.0 of this Gem
-
-# Upgrade Warning
-Version 1.0 has a bug if you run it under Rails 4. Speicifcally, it will run your data migrations but it won't look for the data_migrations table, it will instead use the schema_migrations table.
-
-If you have a Rails 3 app, use version 1.0 of this gem.
-
-If you upgrade to Rails 4 (or start with a Rails 4 app), use version 1.1 of this gem.
-
-If you have a Rails 3 app that you are upgrading to Rails 4 and you fail to upgrade this gem, version 1.0 of this gem when run under a Rails 4 app will re-run all your old data migrations.  Paying attention to the version number when upgrading will avoid this problem.
-
-I sincerely regret this but as I did not know about it myself until I upgraded my own app. At the time, since I had already released Version 1.0 of this, I decided not to yank the version and simply leave this note with the version bump.
-
-Basically version 1.1 drops support for Rails 3, and I have removed the Rails 3 specs.
-
 ## Introduction
 
 Nondestructive migrations, also known as data migrations, are a alternative kind of Rails migration. The data migrations operate exactly like schema migrations, except instead of running migrations to make changes to your schema (adding fields, dropping fields, adding tables, etc), you run data migrations to manipulate data in your app, enqueue or execute Resque jobs that require long-running processes. This happens in a Rails app for different reasons, usually to clean up or supplement data or architectural changes.
