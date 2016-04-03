@@ -2,3 +2,4 @@
 nondestructive_migrations-*.gem
 coverage/
 gemfiles/*.gemfile.lock
+.idea/

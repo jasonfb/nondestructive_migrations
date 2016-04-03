@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    nondestructive_migrations (1.0)
-      activerecord
+    nondestructive_migrations (1.1)
+      activerecord (>= 4.0)
 
 GEM
   remote: https://rubygems.org/
