@@ -3,3 +3,4 @@ nondestructive_migrations-*.gem
 coverage/
 gemfiles/*.gemfile.lock
 .idea/
+test/dummy_app/log/test.log
