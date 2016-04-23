@@ -85,6 +85,13 @@ module DataMigrations
       reverse_migration
     end
 
+    # Use this throughout your migration code to easily print to console your progress.
+    def print_progress
+      @progress_tracker ||= 0
+      @progress_tracker += 1
+      puts "Total progress: #{@progress_tracker}" if @progress_tracker % 500 == 0
+    end
+
   private
 
     # We don't data migrations being created without authoring information.
@@ -122,7 +129,20 @@ module DataMigrations
     end
 
     def webhook_success_text
-      "*Successfully ran* migration #{self.class.migration_information[:migration_name]} in #{Rails.env}."
+      rv = "*Successfully ran* migration #{self.class.migration_information[:migration_name]} in #{Rails.env}."
+
+      # Wrap in defined? calls to make sure old data migrations do not fail on new lib code.
+      if defined?(:successful?) && defined?(:success_message) && defined?(:failure_message)
+        if successful?
+          rv += "The data migration end result is *successful*:"
+          rv += "```#{success_message}```"
+        else
+          rv += "The data migration end result is *NOT SUCCESSFUL*:"
+          rv += "```#{failure_message}```"
+        end
+      end
+
+      rv
     end
 
     def webhook_fail_hash(exception, channel)

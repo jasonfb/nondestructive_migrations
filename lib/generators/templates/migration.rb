@@ -55,6 +55,22 @@ class <%= migration_class_name %> < ActiveRecord::Migration
   def print_ending_condition
   end
 
+  # Allows you to consider the data migration successful or not. Data migration will
+  # still be considered finished and will not run again.
+  def succcessful?
+    true
+  end
+
+  # Sent to slack if errored. Likely, this is a simple string and the real logic is in
+  # the 'successful?' method. It is useful to put counts here.
+  def failure_message
+  end
+
+  # Sent to slack if succcessful. Likely, this is a simple string and the real logic is in
+  # the 'successful?' method. It is useful to put counts here.
+  def success_message
+  end
+
   # Define if interested in running, or leave commented out if not needed
   def reverse_migration
     raise ActiveRecord::IrreversibleMigration

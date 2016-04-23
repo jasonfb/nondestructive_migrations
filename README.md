@@ -23,6 +23,10 @@ Added to this version are:
 
 4) Protections and structure for operating on data carefully.
 
+### print_progress
+
+Call this in your code (loops, likely) to print progress indicator to consle every 500 calls.
+
 ## Introduction
 
 Nondestructive migrations, also known as data migrations, are a alternative kind of Rails migration. The data migrations operate exactly like schema migrations, except instead of running migrations to make changes to your schema (adding fields, dropping fields, adding tables, etc), you run data migrations to manipulate data in your app, enqueue or execute Resque jobs that require long-running processes. This happens in a Rails app for different reasons, usually to clean up or supplement data or architectural changes.
