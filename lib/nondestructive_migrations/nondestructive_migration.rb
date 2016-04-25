@@ -132,7 +132,7 @@ module DataMigrations
       rv = "*Successfully ran* migration #{self.class.migration_information[:migration_name]} in #{Rails.env}."
 
       # Wrap in defined? calls to make sure old data migrations do not fail on new lib code.
-      if defined?(:successful?) && defined?(:success_message) && defined?(:failure_message)
+      if defined?(successful?) && defined?(success_message) && defined?(failure_message)
         if successful?
           rv += "The data migration end result is *successful*:"
           rv += "```#{success_message}```"

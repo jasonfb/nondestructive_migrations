@@ -57,7 +57,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
   # Allows you to consider the data migration successful or not. Data migration will
   # still be considered finished and will not run again.
-  def succcessful?
+  def successful?
     true
   end
 
