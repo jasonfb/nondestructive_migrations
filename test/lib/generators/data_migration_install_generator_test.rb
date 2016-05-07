@@ -18,7 +18,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     run_generator
     assert_migration "db/migrate/create_data_migrations.rb"
     assert_migration "db/migrate/create_data_migrations.rb", /class CreateDataMigrations < ActiveRecord::Migration/
-    assert_migration "db/migrate/create_data_migrations.rb", /create_table :data_migrations do |t|/
-    assert_migration "db/migrate/create_data_migrations.rb", /drop_table :data_migrations/
+    assert_migration "db/migrate/create_data_migrations.rb", /create_table ActiveRecord::DataMigration do |t|/
+    assert_migration "db/migrate/create_data_migrations.rb", /drop_table ActiveRecord::DataMigration/
   end
 end
