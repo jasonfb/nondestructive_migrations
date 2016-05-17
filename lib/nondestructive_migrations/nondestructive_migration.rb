@@ -54,7 +54,9 @@ module DataMigrations
       run_migration
       print_ending_condition
 
-      unless Rails.env.development?
+      if Rails.env.development?
+        puts webhook_success_hash(nil)[:text]
+      else
         send_slack_webhook(webhook_success_hash(nil))
         send_slack_webhook(webhook_success_hash(self.class.migration_information[:author_slack_handle]))
       end
@@ -71,7 +73,9 @@ module DataMigrations
       )
 
       # Send the error to slack and ping user.
-      unless Rails.env.development?
+      if Rails.env.development?
+        puts webhook_fail_hash(nil)[:text]
+      else
         send_slack_webhook(webhook_fail_hash(exception, nil))
         send_slack_webhook(webhook_fail_hash(exception, self.class.migration_information[:author_slack_handle]))
       end
