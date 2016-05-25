@@ -27,18 +27,17 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
     case Rails.env.to_sym
     when :development
-      true
+      return true
     when :staging
-      true
+      return true
     when :demo
-      true
+      return true
     when :production
       # return false if relation_to_operate_on.count > 20_000
+      return true
     else
       raise "Encountered unknown rails env of #{Rails.env} in data migration."
     end
-
-    true
   end
 
   # Use this method to print out the starting condition of the data. This is often counts or aggregations
