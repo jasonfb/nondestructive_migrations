@@ -40,6 +40,12 @@ eos
     assert Rake::Task['data:rollback'].invoke
   end
 
+  # TODO: fix these
+  # getting error with folder not existing
+  # def test_that_the_mark_all_as_run_task_can_run
+  #   assert Rake::Task['data:mark_all_as_run'].invoke
+  # end
+
 
   # TODO: Fix these
   # getting No migration with version number 20140101125959

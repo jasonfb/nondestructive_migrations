@@ -1,33 +1,37 @@
+Upstream
+=========
 [![Version     ](https://img.shields.io/gem/v/nondestructive_migrations.svg?style=flat)](https://rubygems.org/gems/nondestructive_migrations)
 [![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
 [![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
 
-## Rails 4
+Handshake
+==========
 
-Use Version 1.1 of this Gem
+[![Circle CI](https://circleci.com/gh/strydercorp/nondestructive_migrations.svg?style=svg)](https://circleci.com/gh/strydercorp/nondestructive_migrations)
 
-## Rails 3
+## About this Fork
 
-Use Version 1.0 of this Gem
+This is a fork off of the original repo at https://github.com/jasonfb/nondestructive_migrations
 
-# Upgrade Warning
-Version 1.0 has a bug if you run it under Rails 4. Speicifcally, it will run your data migrations but it won't look for the data_migrations table, it will instead use the schema_migrations table.
+Added to this version are:
 
-If you have a Rails 3 app, use version 1.0 of this gem.
+1) Add ```disable_ddl_transaction!``` to the template data migration
 
-If you upgrade to Rails 4 (or start with a Rails 4 app), use version 1.1 of this gem.
+2) Add a rake task to mark all data migrations as complete, useful for dev environments where the database is dropped from time to time.
 
-If you have a Rails 3 app that you are upgrading to Rails 4 and you fail to upgrade this gem, version 1.0 of this gem when run under a Rails 4 app will re-run all your old data migrations.  Paying attention to the version number when upgrading will avoid this problem.
+3) Logic for announcing to slack when migrations are run, with details.
 
-I sincerely regret this but as I did not know about it myself until I upgraded my own app. At the time, since I had already released Version 1.0 of this, I decided not to yank the version and simply leave this note with the version bump.
+4) Protections and structure for operating on data carefully.
 
-Basically version 1.1 drops support for Rails 3, and I have removed the Rails 3 specs.
+### print_progress
+
+Call this in your code (loops, likely) to print progress indicator to consle every 500 calls.
 
 ## Introduction
 
 Nondestructive migrations, also known as data migrations, are a alternative kind of Rails migration. The data migrations operate exactly like schema migrations, except instead of running migrations to make changes to your schema (adding fields, dropping fields, adding tables, etc), you run data migrations to manipulate data in your app, enqueue or execute Resque jobs that require long-running processes. This happens in a Rails app for different reasons, usually to clean up or supplement data or architectural changes.
 
-Splitting your data migrations from your schema migrations has a particular benefit of achieving the most consistent zero-downtime deploys you can. I recommend you switch your deployment script to allow you to do two types of deploys: a Zero-downtime deploy (no schema migrations) and Schema Migration deploy. 
+Splitting your data migrations from your schema migrations has a particular benefit of achieving the most consistent zero-downtime deploys you can. I recommend you switch your deployment script to allow you to do two types of deploys: a Zero-downtime deploy (no schema migrations) and Schema Migration deploy.
 
 This way, you can deploy any non-destructive (data-only) migration with a Zero-downtime strategy, and opt to make destructive (schema) migrations in a normal deployment (maintenance on, run schema changes, boot up new app,  maintenance off).  Data-only migrations can be run while the app is actually running, augmenting what you can achieve with the migration-style shortcuts provided by Rails.
 
@@ -61,13 +65,13 @@ This will create a *schema* migration that will create the data_migrations table
 rake db:migrate
 ```
 
-You are now set up and ready to start making data migrations. To create your first migration, create it with a generating using a camal-case description of what your data migration does. 
+You are now set up and ready to start making data migrations. To create your first migration, create it with a generating using a camal-case description of what your data migration does.
 
 ```
 rails generate data_migration UpdatePhoneNumbers
 ```
 
-Look for a file called (something like) `db/data_migrate/20140831020834_update_phone_numbers.rb`. It will have been automatically written with an empty up and down method. Add whatever operations you want to do in your **up** method, like large data manipulation jobs, running rake tasks, or enqueuing batch process jobs. 
+Look for a file called (something like) `db/data_migrate/20140831020834_update_phone_numbers.rb`. It will have been automatically written with an empty up and down method. Add whatever operations you want to do in your **up** method, like large data manipulation jobs, running rake tasks, or enqueuing batch process jobs.
 
 You probably want to put `ActiveRecord::IrreversibleMigration` into the **down** method your data migration:
 
@@ -90,7 +94,7 @@ rake data:migrate
 ```
 
 
-You get three additional rake tasks that operate and have the same syntax as the schema migrations, but operate only on the data migrations. 
+You get three additional rake tasks that operate and have the same syntax as the schema migrations, but operate only on the data migrations.
 
 ## rake data:migrate
 Migrate all data migrations that haven't been migrated.
@@ -102,7 +106,7 @@ Migrate down the specified version
 Migrate up the specified versions.
 
 ## rake data:rollback
-Rollback the last version. Generally data migrations don't have any "down" associated with them so use this only under extreme circumstances. 
+Rollback the last version. Generally data migrations don't have any "down" associated with them so use this only under extreme circumstances.
 
 
 #
@@ -162,7 +166,7 @@ Here you can add these as shell scripts (I use bash). dd-prod is my short hand f
 
 Alternatively, if you don't like the switching preboot off & on part of that, you can deploy a schema-migration code on Heorku and watch the deploy yourself manually. Immediately upon seeing the "Launching..." step, quickly flip your app into maintenance mode with `heroku maintenance:on`
 
-While maintenance is on, run your schema migrations. Restart your app and wait approximately 1-2 minutes, then turn maintenance off. That should avoid the problem of having two apps running at the same time while you're migrating. 
+While maintenance is on, run your schema migrations. Restart your app and wait approximately 1-2 minutes, then turn maintenance off. That should avoid the problem of having two apps running at the same time while you're migrating.
 
 
 ## Example App

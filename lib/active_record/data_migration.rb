@@ -3,12 +3,16 @@ require 'active_record/scoping/named'
 require 'active_record/base'
 
 module ActiveRecord
+  # Sets up DataMigration as an active record definition so that we can get all
+  # the niceties of active record.
   class DataMigration < ActiveRecord::Base
     class << self
       def primary_key
         nil
       end
 
+      # table_name_prefix and table_name_suffix are used to take into account the
+      # AR configuration options. For example, myapp_ could be a prefix.
       def table_name
         "#{table_name_prefix}data_migrations#{table_name_suffix}"
       end
