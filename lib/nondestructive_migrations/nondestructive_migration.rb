@@ -138,10 +138,10 @@ module DataMigrations
       # Wrap in defined? calls to make sure old data migrations do not fail on new lib code.
       if defined?(successful?) && defined?(success_message) && defined?(failure_message)
         if successful?
-          rv += "The data migration end result is *successful*:"
+          rv += " The data migration end result is *successful*:"
           rv += "```#{success_message}```"
         else
-          rv += "The data migration end result is *NOT SUCCESSFUL*:"
+          rv += " The data migration end result is *NOT SUCCESSFUL*:"
           rv += "```#{failure_message}```"
         end
       end
