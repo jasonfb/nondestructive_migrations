@@ -15,8 +15,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
   # Define common queries that you will be using for printing start information, running the migration itself
   # and printing the ending condition in DRY global variables.
-  def define_queries
-  end
+  def define_queries; end
 
   # Often times certain things must be in place properly for the data migration to run, and you
   # may want to abort the data migration. Return false here if something is not as expected.
@@ -27,14 +26,14 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
     case Rails.env.to_sym
     when :development
-      return true
+      true
     when :staging
-      return true
+      true
     when :demo
-      return true
+      true
     when :production
       # return false if relation_to_operate_on.count > 20_000
-      return true
+      true
     else
       raise "Encountered unknown rails env of #{Rails.env} in data migration."
     end
@@ -42,17 +41,14 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
   # Use this method to print out the starting condition of the data. This is often counts or aggregations
   # of counts. This can be useful for debugging.
-  def print_starting_condition
-  end
+  def print_starting_condition; end
 
   # Write primary migration code here. Consider printing updates along the way, especially for large data migrations
-  def run_migration
-  end
+  def run_migration; end
 
   # Use this method to print out the ending condition of the data after the migrations run. This is often
   # counts or aggregations of counts. This can be useful for debugging and ensuring everything ran as expected.
-  def print_ending_condition
-  end
+  def print_ending_condition; end
 
   # Allows you to consider the data migration successful or not. Data migration will
   # still be considered finished and will not run again.
@@ -62,13 +58,11 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 
   # Sent to slack if errored. Likely, this is a simple string and the real logic is in
   # the 'successful?' method. It is useful to put counts here.
-  def failure_message
-  end
+  def failure_message; end
 
   # Sent to slack if succcessful. Likely, this is a simple string and the real logic is in
   # the 'successful?' method. It is useful to put counts here.
-  def success_message
-  end
+  def success_message; end
 
   # Define if interested in running, or leave commented out if not needed
   def reverse_migration
