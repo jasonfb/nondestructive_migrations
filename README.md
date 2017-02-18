@@ -2,7 +2,7 @@
 [![Code Climate](https://codeclimate.com/github/jasonfb/nondestructive_migrations/badges/gpa.svg)](https://codeclimate.com/github/jasonfb/nondestructive_migrations)
 [![Travis CI](https://travis-ci.org/jasonfb/nondestructive_migrations.svg?branch=master)](https://travis-ci.org/jasonfb/nondestructive_migrations)
 
-## Rails 4.0, 4.1
+## Rails 4.0, 4.1, 4.2
 
 _Please use the version number of this gem in lockstep with your Rails version._
 
@@ -10,7 +10,7 @@ _Please use the version number of this gem in lockstep with your Rails version._
 |--------------|------------------|--------------------------|---------------------------------------------------------------------|---|
 |              | Rails 3          | v1.0 - WORKING           |                                                                     |   |
 | 2.1.5        | Rails 4.x, 4.1.x | v1.1 - WORKING           | https://github.com/jasonfb/nondestructive-migrations-example-app-41 |   |
-|              | Rails 4.2        | not tested               |                                                                     |   |
+|              | Rails 4.2        | not tested               | https://github.com/jasonfb/nondestructive-migrations-example-app-42 |   |
 |              | Rails 5.0        | not tested               |                                                                     |   |
 |              | Rails 5.1        | not tested               |                                                                     |   |
 
