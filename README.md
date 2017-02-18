@@ -6,10 +6,10 @@
 
 _Please use the version number of this gem in lockstep with your Rails version._
 
-| Ruby Version | Rails Version    |  Use Version of This Gem | Sample app                                                          |   |
+| Testing with Ruby Version | Rails Version    |  Use Version of This Gem | Sample app                                                          |   |
 |--------------|------------------|--------------------------|---------------------------------------------------------------------|---|
-|              | Rails 3          | v1.0                     |                                                                     |   |
-| 2.1.5        | Rails 4.x, 4.1.x | v1.1                     | https://github.com/jasonfb/nondestructive-migrations-example-app-41 |   |
+|              | Rails 3          | v1.0 - WORKING           |                                                                     |   |
+| 2.1.5        | Rails 4.x, 4.1.x | v1.1 - WORKING           | https://github.com/jasonfb/nondestructive-migrations-example-app-41 |   |
 |              | Rails 4.2        | not tested               |                                                                     |   |
 |              | Rails 5.0        | not tested               |                                                                     |   |
 |              | Rails 5.1        | not tested               |                                                                     |   |
@@ -187,11 +187,21 @@ rake test TESTOPTS="-v"
 ```
 
 
-Or you can run the specs against Rails 4.0.10, and 4.1.6 by using Appraisal (build-in).
+Or you can run the specs against Rails 4.0.10, and 4.1.6, 4.2 by using Appraisal (built-in).
 
 ```
+appraisal install
 appraisal rake test
 ```
+
+or to run just rails 4.0:
+```
+appraisal rails-4-0 rake test
+```
+
+We are currently configured for rails-4-0, rails-4-1, and rails-4-2
+
+
 
 Appraisal runs the specs against different versions of Rails. For more information, see https://github.com/thoughtbot/appraisal
 
