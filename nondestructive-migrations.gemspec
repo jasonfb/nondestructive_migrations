@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.homepage    =  'https://github.com/jasonfb/nondestructive_migrations'
   s.license       = 'MIT'
   
-  s.add_runtime_dependency 'activerecord', ">= 4.0"
+  s.add_runtime_dependency 'activerecord', ">= 4.2"
 end
