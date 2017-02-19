@@ -11,7 +11,7 @@ _Please use the version number of this gem in lockstep with your Rails version._
 |              | Rails 3          | v1.0 - WORKING           |                                                                     |   |
 | 2.1.5        | Rails 4.x, 4.1.x | v1.1 - WORKING           | https://github.com/jasonfb/nondestructive-migrations-example-app-41 |   |
 |              | Rails 4.2        | not tested               | https://github.com/jasonfb/nondestructive-migrations-example-app-42 |   |
-|              | Rails 5.0        | not tested - PR PR: https://github.com/jasonfb/nondestructive_migrations/pull/14             |                                                                     |   |
+| 2.3.0        | Rails 5.0        | v1.2 - WORKING           | https://github.com/jasonfb/nondestructive-migrations-example-app-50 |   |
 |              | Rails 5.1        | not tested               |                                                                     |   |
 
 
