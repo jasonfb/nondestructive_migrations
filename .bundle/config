@@ -1,2 +1,2 @@
 ---
-BUNDLE_WITHOUT: local_development
+BUNDLE_WITHOUT: "local_development"

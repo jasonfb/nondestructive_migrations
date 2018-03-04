@@ -6,15 +6,17 @@
 
 _Please use the version number of this gem in lockstep with your Rails version._
 
-| Testing with Ruby Version | Rails Version    |  Use Version of This Gem | Sample app                                                          |   |
+| Rails Version    |  Tested with Ruby Version* |   Use Version of This Gem | Sample app                                                          |   |
 |--------------|------------------|--------------------------|---------------------------------------------------------------------|---|
-|              | Rails 3          | v1.0 - WORKING           |                                                                     |   |
-| 2.1.5        | Rails 4.x, 4.1.x | v1.1 - WORKING           | https://github.com/jasonfb/nondestructive-migrations-example-app-41 |   |
-| 2.3.0        | Rails 4.2        | v1.1.5 - WORKING         | https://github.com/jasonfb/nondestructive-migrations-example-app-42 |   |
-| 2.3.0        | Rails 5.0        | v1.2 - WORKING           | https://github.com/jasonfb/nondestructive-migrations-example-app-50 |   |
-| not tested   | Rails 5.1        | not tested               | not tested                                                                    |   |
+| Rails 3      | Ruby 1.9.3       | v1.0                     |                                                                     |   |
+| Rails 4.x, 4.1.x  | Ruby 2.1.5  | v1.1                     | https://github.com/jasonfb/nondestructive-migrations-example-app-41 |   |
+| Rails 4.2        | Ruby 2.3.0   | v1.1.5                   | https://github.com/jasonfb/nondestructive-migrations-example-app-42 |   |
+| Rails 5.0        | Ruby 2.3.0   | v1.2                     | https://github.com/jasonfb/nondestructive-migrations-example-app-50 |   |
+| Rails 5.1        | Ruby 2.3.3   | v1.3                     |                                                                     |   |
+| Rails 5.2        | Ruby 2.3.3   | v1.4 *COMING SOON*       | ?                                                                    |   |
 
 
+_* other versions of Ruby may work_
 
 _Note: head of master current cooresponds to tagged version v1.1.5 because I did gem cuts out of order. Follow chart above for the right version of this spec to use for your Rails version. If anyone would like this tested against Rails 5.1, please open an Issue._
 
