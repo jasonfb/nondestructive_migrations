@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'nondestructive_migrations'
-  s.version     = '1.1.5'
-  s.date        = '2017-02-19'
+  s.version     = '1.3'
+  s.date        = '2017-03-04'
   s.summary     = "Nondestructive (data-only) migrations for your Rails app"
   s.description = "Separate schema-only migrations from nondestrucitve (data) migrations in your Rails app"
   s.authors     = ["Jason Fleetwood-Boldt"]
@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.homepage    =  'https://github.com/jasonfb/nondestructive_migrations'
   s.license       = 'MIT'
   
-  s.add_runtime_dependency 'activerecord', ">= 4.2"
+  s.add_runtime_dependency 'activerecord', "~> 5.1"
 end

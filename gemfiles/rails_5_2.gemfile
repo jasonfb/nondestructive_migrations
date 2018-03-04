@@ -6,7 +6,7 @@ gem "appraisal"
 gem "guard"
 gem "guard-rspec"
 gem "rake"
-gem "byebug", :platform => :mri_21
+gem "byebug", platform: :mri_21
 gem "sqlite3"
 gem "mysql2"
 gem "mocha"
@@ -14,7 +14,7 @@ gem "rails", "5.2.0.rc1"
 gem "minitest-rg"
 
 group :test do
-  gem "simplecov", :require => false
+  gem "simplecov", require: false
 end
 
-gemspec :path => "../"
+gemspec path: "../"

@@ -1,8 +1,8 @@
 PATH
   remote: ..
   specs:
-    nondestructive_migrations (1.1)
-      activerecord (>= 4.0)
+    nondestructive_migrations (1.3)
+      activerecord (~> 5.1)
 
 GEM
   remote: https://rubygems.org/
@@ -54,6 +54,7 @@ GEM
       thor (>= 0.14.0)
     arel (9.0.0)
     builder (3.2.3)
+    byebug (10.0.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
