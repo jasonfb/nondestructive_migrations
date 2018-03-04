@@ -1,9 +1,8 @@
 language: ruby
 
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.3
+  - 2.4.3
+  - 2.5.0
   - ruby-head
 
 env:
@@ -12,9 +11,9 @@ env:
   - DB=postgresql
 
 gemfile:
-  - gemfiles/rails_3_2.gemfile
-  - gemfiles/rails_4_0.gemfile
   - gemfiles/rails_4_1.gemfile
+  - gemfiles/rails_5_1.gemfile
+  - gemfiles/rails_5_2.gemfile
 
 #cache: bundler
 before_install: gem install bundler
