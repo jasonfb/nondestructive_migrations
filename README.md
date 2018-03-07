@@ -8,12 +8,12 @@ _Please use the version number of this gem in lockstep with your Rails version._
 
 | Rails Version    |  Tested with Ruby Version* |   Use Version of This Gem | Sample app                                           | Released    |           
 |--------------|------------------|--------------------------|---------------------------------------------------------------------|-------------|
-| Rails 3      | Ruby 1.9.3       | v1.0                     |                                                                     | March 2015  |
+| Rails 3      | Ruby 1.9.3       | v1.0                     | sorry not available                                                         | March 2015  |
 | Rails 4.x, 4.1.x  | Ruby 2.1.5  | v1.1                     | https://github.com/jasonfb/nondestructive-migrations-example-app-41 | March 2015  |
 | Rails 4.2        | Ruby 2.3.0   | v1.1.5                   | https://github.com/jasonfb/nondestructive-migrations-example-app-42 | Feb 2017    |
 | Rails 5.0        | Ruby 2.3.0   | v1.2                     | https://github.com/jasonfb/nondestructive-migrations-example-app-50 | Feb 2017    |
 | Rails 5.1        | Ruby 2.3.3   | v1.3                     | https://github.com/jasonfb/nondestructive-migrations-example-app-51 | March 2018  |
-| Rails 5.2        | Ruby 2.3.3   | v1.4 *COMING SOON*       | https://github.com/jasonfb/nondestructive-migrations-example-app-52 | March 2018  |
+| Rails 5.2        | Ruby 2.3.3   | v1.4 *COMING SOON*       | https://github.com/jasonfb/nondestructive-migrations-example-app-52 | *COMING SOON*  |
 
 
 _* other versions of Ruby may work_
