@@ -6,7 +6,7 @@
 
 _Please use the version number of this gem in lockstep with your Rails version._
 
-| Rails Version    |  Tested with Ruby Version* |   Use Version of This Gem | Sample app                                           | Released |              |   |
+| Rails Version    |  Tested with Ruby Version* |   Use Version of This Gem | Sample app                                           | Released    |           
 |--------------|------------------|--------------------------|---------------------------------------------------------------------|-------------|
 | Rails 3      | Ruby 1.9.3       | v1.0                     |                                                                     | March 2015  |
 | Rails 4.x, 4.1.x  | Ruby 2.1.5  | v1.1                     | https://github.com/jasonfb/nondestructive-migrations-example-app-41 | March 2015  |
@@ -52,7 +52,7 @@ To add to your Rails project, follow these steps.
 gem 'nondestructive_migrations'
 ```
 
-2) Run `bundle install
+2) Run `bundle install`
 
 3) Run the setup script:
 ```
