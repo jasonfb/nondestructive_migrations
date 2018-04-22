@@ -20,7 +20,7 @@ gem 'mocha'
 # on Rails version being tested against)
 
 # ENABLE FOR testing Rails 4.1
-gem "rails", "5.1", :require => false
+gem "rails", "5.1.6", :require => false
 
 gem 'minitest-rg'
 
