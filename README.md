@@ -18,8 +18,6 @@ _Please use the version number of this gem in lockstep with your Rails version._
 
 _* other versions of Ruby may work_
 
-_Note: head of master current cooresponds to tagged version v1.1.5 because I did gem cuts out of order. Follow chart above for the right version of this spec to use for your Rails version. If anyone would like this tested against Rails 5.1, please open an Issue._
-
 
 # Rails 4.0, 4.1, 4.2 Upgrade Warning
 Version 1.0 has a bug if you run it under Rails 4. Specifically, it will run your data migrations but it won't look for the data_migrations table, it will instead use the schema_migrations table. If you have a Rails 3 app, use version 1.0 of this gem. If you upgrade to Rails 4 (or start with a Rails 4 app), use version 1.1 of this gem. If you have a Rails 3 app that you are upgrading to Rails 4 and you fail to upgrade this gem, version 1.0 of this gem when run under a Rails 4 app will re-run all your old data migrations.  Paying attention to the version number when upgrading will avoid this problem. I sincerely regret this but as I did not know about it myself until I upgraded my own app. At the time, since I had already released Version 1.0 of this, I decided not to yank the version and simply leave this note with the version bump. Basically version 1.1 drops support for Rails 3, and I have removed the Rails 3 specs.
