@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
                    "lib/active_record/data_migration.rb"]
   s.homepage    =  'https://github.com/jasonfb/nondestructive_migrations'
   s.license       = 'MIT'
-  
-  s.add_runtime_dependency 'activerecord', "~> 5.1"
+
+  s.add_runtime_dependency 'activerecord', [">= 5.1", "< 7"]
 end
