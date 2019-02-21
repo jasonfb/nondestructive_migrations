@@ -55,6 +55,10 @@ class NondestructiveMigrator < ActiveRecord::Migrator
         (db_list + file_list).sort_by { |_, version, _| version }
       end
 
+      def rollback(steps)
+        move(:down, steps)
+      end
+
       def move(direction, steps)
         migrator = new_migrator(direction, migrations)
 
@@ -108,6 +112,10 @@ class NondestructiveMigrator < ActiveRecord::Migrator
 
       def migrate(path)
         context(path).migrate()
+      end
+
+      def rollback(path, steps = 1)
+        context(path).rollback(steps)
       end
 
       def run(direction, path, target_version)
