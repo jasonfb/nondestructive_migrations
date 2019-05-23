@@ -47,6 +47,12 @@ module DataMigrations
     end
 
     def up
+      if Rails.env.development?
+        puts webhook_start_hash(nil)
+      else
+        send_slack_webhook(webhook_start_hash(nil))
+        send_slack_webhook(webhook_start_hash(self.class.migration_information[:author_slack_handle]))
+      end
       define_queries
       fail "Data migration not running since data is not as expected" unless data_is_as_expected?
       fail "Authoring information not present, not running" unless authoring_information_present?
@@ -121,6 +127,19 @@ module DataMigrations
       request.set_form_data(parms_form)
 
       http.request(request)
+    end
+
+    def webhook_start_hash(channel)
+      {
+        channel: channel || default_slack_channel,
+        username: slack_username,
+        icon_emoji: slack_emoji,
+        text: webhook_start_text
+      }
+    end
+
+    def webhook_start_text
+      rv = "*Started* migration #{self.class.migration_information[:migration_name]} in #{Rails.env}."
     end
 
     def webhook_success_hash(channel)
